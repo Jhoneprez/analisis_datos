@@ -1,3 +1,4 @@
+
 #%%
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,10 +7,6 @@ pd.options.display.max_columns = None
 #Cargar el archivo
 #%%
 data = pd.read_csv("trade_data.csv", encoding="utf-8", sep=';')
-
-#Muestra las columnas de la data
-#%%
-print(data.columns)
 
 #%%
 print(data.info())
@@ -226,8 +223,6 @@ plt.ylabel("Cantidad de productos únicos")
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-
-
 
 
 
