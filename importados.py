@@ -78,6 +78,10 @@ print(data.tail())
 #duplicados = data.duplicated()
 #print(duplicados.sum())
 
+
+data['Codigo'] = data['Codigo'].replace({2610: 261000, '2610': '261000'})
+data['Codigo'] = data['Codigo'].replace({2716: 271600, '2716': '271600'})
+
 #%%
 #Evolución del valor total de importaciones (2018–2023)
 valor_anual = data.groupby('Anios')['Valor_USD'].sum()
@@ -135,7 +139,7 @@ plt.show()
 # Comparación del comportamiento del Dolar conversion a Peso
 tasa_dolar = {
     2018: 2950, 2019: 3280, 2020: 3700,
-    2021: 3760, 2022: 4020, 2023: 4100
+    2021: 3760, 2022: 4100, 2023: 4000
 }
 print(tasa_dolar)
 
@@ -177,6 +181,7 @@ productos_seis_anios = productos_constantes[productos_constantes == 6]
 print("Productos importados en todos los años (2018-2023):")
 print(productos_seis_anios)
 
+"""
 #%%
 #Gráfica de torta: Participación Top 5 de producto por valor USD
 participacion = data.groupby('Producto')['Valor_USD'].sum().sort_values(ascending=False).head(5)
@@ -190,6 +195,8 @@ plt.ylabel('')
 plt.title("Participación de productos más importados (USD)")
 plt.tight_layout()
 plt.show()
+
+"""
 
 
 #%%
@@ -223,9 +230,6 @@ plt.ylabel("Cantidad de productos únicos")
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-
-
-
 
 
 
