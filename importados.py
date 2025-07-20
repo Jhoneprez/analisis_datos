@@ -78,7 +78,7 @@ print(data.tail())
 #duplicados = data.duplicated()
 #print(duplicados.sum())
 
-
+#%%
 data['Codigo'] = data['Codigo'].replace({2610: 261000, '2610': '261000'})
 data['Codigo'] = data['Codigo'].replace({2716: 271600, '2716': '271600'})
 
@@ -141,7 +141,25 @@ tasa_dolar = {
     2018: 2950, 2019: 3280, 2020: 3700,
     2021: 3760, 2022: 4100, 2023: 4000
 }
-print(tasa_dolar)
+
+anios = list(tasa_dolar.keys())
+valores = list(tasa_dolar.values())
+
+plt.figure(figsize=(10, 5))
+plt.plot(anios, valores, marker='o', linestyle='-', color='royalblue', linewidth=2)
+
+plt.title("💰 Comportamiento del Dólar en Pesos Colombianos (2018-2023)", fontsize=14, fontweight='bold')
+plt.xlabel("Año")
+plt.ylabel("Tasa de Conversión (COP por USD)")
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.xticks(anios)
+plt.yticks(range(2900, 4201, 200))
+
+for i, valor in enumerate(valores):
+    plt.text(anios[i], valor + 30, f"${valor}", ha='center', fontsize=9)
+
+plt.tight_layout()
+plt.show()
 
 #%%
 # Estimativo de cómo las variaciones del dólar afectaron el valor CIF.
@@ -181,7 +199,7 @@ productos_seis_anios = productos_constantes[productos_constantes == 6]
 print("Productos importados en todos los años (2018-2023):")
 print(productos_seis_anios)
 
-"""
+
 #%%
 #Gráfica de torta: Participación Top 5 de producto por valor USD
 participacion = data.groupby('Producto')['Valor_USD'].sum().sort_values(ascending=False).head(5)
@@ -195,8 +213,6 @@ plt.ylabel('')
 plt.title("Participación de productos más importados (USD)")
 plt.tight_layout()
 plt.show()
-
-"""
 
 
 #%%
@@ -230,7 +246,6 @@ plt.ylabel("Cantidad de productos únicos")
 plt.grid(True)
 plt.tight_layout()
 plt.show()
-
 
 
 """
